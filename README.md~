@@ -41,7 +41,7 @@ source activate Skycatch1
 # NOT TRAINED MODEL 
 ## (OPTIONAL STEPS)
 
-** All the files can be downloaded from my GCP check the links in 
+** If you don't want do the follow steps...All the files can be downloaded from my GCP:
 * [train record](https://storage.cloud.google.com/skycatchdata1/data/train.record?_ga=2.133732493.-2095829079.1515573260) and  [test record](https://storage.cloud.google.com/skycatchdata1/data/test.record?_ga=2.20682043.-2095829079.1515573260) add to ./Skycatch/data1 folder
 
 ----------------------------------------------------------------
