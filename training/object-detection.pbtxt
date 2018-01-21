@@ -1,0 +1,19 @@
+item {
+  id: 1
+  name: 'body'
+}
+
+item {
+  id: 2
+  name: 'hoe'
+}
+
+item {
+  id: 3
+  name: 'wheels'
+}
+
+item {
+  id: 4
+  name: 'others'
+}
