@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jan 18 15:56:09 2018
+
+@author: fatoks
+"""
+#this file create csv table from XML files
 import os
 import glob
 import pandas as pd

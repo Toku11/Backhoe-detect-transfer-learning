@@ -1,5 +1,13 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jan 18 15:56:09 2018
+
+@author: fatoks
+"""
+#this code split the dataset 2523 in train and test by 1800 and 723
 import numpy as np
 import pandas as pd
+
 np.random.seed(1)
 full_labels = pd.read_csv('./data1/Skycatch.csv')
 full_labels.head()

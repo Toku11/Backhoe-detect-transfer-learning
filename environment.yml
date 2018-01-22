@@ -137,7 +137,7 @@ dependencies:
   - prompt-toolkit==1.0.13
   - protobuf==3.2.0
   - pydot-ng==1.0.0
-  - tensorflow==1.2.0
+  - tensorflow==1.4.0
   - theano==0.8.2
   - tqdm==4.11.2
 prefix: /home/fatoks/miniconda2/envs/Skycatch1
