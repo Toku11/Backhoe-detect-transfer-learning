@@ -36,7 +36,7 @@ PATH_TO_CKPT = '/home/fatoks/CodigosDeep/Skycatch/fine_tuned_model/frozen_infere
 # List of the strings that is used to add correct label for each box.
 PATH_TO_LABELS = os.path.join('/home/fatoks/CodigosDeep/Skycatch/data/', 'object-detection.pbtxt')
 
-NUM_CLASSES = 3
+NUM_CLASSES = 4
 detection_graph = tf.Graph()
 with detection_graph.as_default():
     od_graph_def = tf.GraphDef()
