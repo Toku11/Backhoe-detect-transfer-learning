@@ -1,13 +1,19 @@
 # Tokunaga Herrera Oscar Skycatch Coding Challenge Model
 
-# DOCUMENTATION
+# ARCHITECTURE CHALLENGE
+
+https://docs.google.com/document/d/1EX6Y-oFsJZVAUyBrVJTUe2ruxGRhT5jXJJhy9QDr3sA/edit?usp=sharing
+
+# CODING CHALLENGE
+
+## DOCUMENTATION
 
 [VIDEO YOUTUBE!](https://www.youtube.com/watch?v=xzKb2DJ3PJ0)
 
 
-```
+
 "Creating accurate machine learning models capable of localizing and identifying multiple objects in a single image remains a core challenge in computer vision. The TensorFlow Object Detection API is an open source framework built on top of TensorFlow that makes it easy to construct, train and deploy object detection models. At Google we’ve certainly found this codebase to be useful for our computer vision needs, and we hope that you will as well"
-```
+
 <p align="center">
   <img src="Containt/imagen1.png" width=676 height=450>
 </p>
@@ -26,9 +32,10 @@ So let's get serious!
 ## Are you ready?
 
 Clone the Skycatch project
-''' bash
+``` bash
 https://github.com/Toku11/Skycatch.git
-'''
+
+``` 
 
 The first thing you need to do is to create an environment in conda
 
@@ -38,28 +45,33 @@ conda env create -f environment.yml
 source activate Skycatch1
 ```
 
+NOTE : unfortunately I do not have a nvidia card so I do not add anything related
+
 # NOT TRAINED MODEL 
 ## (OPTIONAL STEPS)
 
 ** If you don't want do the follow steps...All the files can be downloaded from my GCP:
 * [train record](https://storage.cloud.google.com/skycatchdata1/data/train.record?_ga=2.133732493.-2095829079.1515573260) and  [test record](https://storage.cloud.google.com/skycatchdata1/data/test.record?_ga=2.20682043.-2095829079.1515573260) add to ./Skycatch/data1 folder
 
+OTHERWISE 
 ----------------------------------------------------------------
 
 Tensorflow Object Detection API uses TFRecord file format for datasets, so we need to convert our datases to this file format, but don't worry just...
 
-''' bash
+``` bash
 #From /Skycatch
 git checkout Skycatchclean
+```
 
-'''
 Download your [dataset](https://drive.google.com/drive/folders/0B2pn1FoOPXh0ZXoxT0RqRUxOcm8), rename the dataset folder as FINAL and move it into ./Skycatch/  .
 
 
 ``` bash
 #From /Skycatch
-sh autostart.sh or open autostart.sh and copy line by line the commands
+sh autostart.sh 
 ```
+or open autostart.sh and copy line by line the commands
+
 
 Now you have a clean Dataset into images and annotations folder, a csv table and a TFRecord file for train and test
 
@@ -73,17 +85,21 @@ For training you need the following:
 and adjust the num_classes to 3. Then set the path for the model
  [checkpoint](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md) .It is recommended to use a checkpoint as it's always better to start from pre-trained models.
 
-* Edit the /Skycatch/training/object-detection.pbtxt to the numbrer of classes that you need, i have four because some .XML files have another labels like cars.
+* Edit the /Skycatch/training/object-detection.pbtxt to the numbrer of classes that you need, i have four because some .XML files have another labels like cars. 
+
+* Edit .config paths to records files and checkpoints
 
 * Add to your bashrc
-
-sudo nano .bashrc " export PYTHONPATH="${PYTHONPATH}:/home/{username}/Skycatch/models/research/:/home/{username}/Skycatch/models/research/slim/" " or run from every new terminal you start.
+``` bash
+sudo nano .bashrc " export PYTHONPATH="${PYTHONPATH}:/home/{username}/Skycatch/models/research/:/home/{username}/Skycatch/models/research/slim/" "
 ```
+or run from every new terminal you start.
+
 NOTE:
 
 for cloud training we'll use ssd_mobilenet_v1_pets.config 
 for local training we'll use ssd_mobilenet_v1_pets_off.config 
-```
+
 
 ## Train locally 
 
@@ -112,7 +128,7 @@ First install  conda install -c bioconda google-cloud-sdk  in your environment, 
 
 ``` bash
 gcloud init
-'''
+```
 
 configure us-central1
 
@@ -140,7 +156,7 @@ A user can start a training job on Cloud ML Engine using the following command:
 
 gcloud ml-engine jobs submit training object_detection_`date +%s`     --runtime-version 1.4     --job-dir=gs://{your_bucket}/data/     --packages /home/{username}/Skycatch/models/research/dist/object_detection-0.1.tar.gz,/home/{username}/Skycatch/models/research/slim/dist/slim-0.1.tar.gz     --module-name object_detection.train     --region us-central1    --config /home/{username}/Skycatch/training/cloud.yml     --     --train_dir=gs://{your_bucket}/data --pipeline_config_path=gs://{your_bucket}/data/ssd_mobilenet_v1_pets.config
 ```
-##Evaluate
+## Evaluate
 Evaluation jobs run on a single machine, so it is not necessary to write a YAML configuration for evaluation. Run the following command to start the evaluation job:
 ``` bash
 gcloud ml-engine jobs submit training object_detection_eval_`date +%s`     --runtime-version 1.4     --job-dir=gs://{your_bucket}/data/     --packages /home/{username}/Skycatch/models/research/dist/object_detection-0.1.tar.gz,/home/{username}/Skycatch/models/research/slim/dist/slim-0.1.tar.gz     --module-name object_detection.eval     --region us-central1    --scale-tier BASIC_GPU     --     --checkpoint_dir=gs://{your_bucket}/data    --eval_dir=:gs//{yourbucket}/data    --pipeline_config_path=gs://{your_bucket}/data/ssd_mobilenet_v1_pets.config
@@ -155,7 +171,14 @@ tensorboard --logdir={your_bucket}/data
 
 # Export Tensorflowgraph
 
-* Download the checkpoint data by clicking in the file at GCP/{your_bucket}, move to /Skycatch/data and run the following:
+Download the checkpoint data by clicking in the file at GCP /{your_bucket}/data/,
+
+* checkpoints
+* model.ckpt-${CHECKPOINT_NUMBER}.data-00000-of-00001,
+* model.ckpt-${CHECKPOINT_NUMBER}.index
+* model.ckpt-${CHECKPOINT_NUMBER}.meta
+
+move the files to /Skycatch/data and run the following:
 
 NOTE: check if the name of the file still the same
 
@@ -174,12 +197,11 @@ This will create a new directory fine_tuned_model, inside of which will be your 
 ## Let's use the classifier !!
 
 Now you have a trained system like the branch master
+``` bash
 
-''' bash
 #From /Skycatch
 git checkout master
-
-'''
+``` 
 
 In order to probe the system, we need a video, don't worry there is one in Skycatch folder!!
 
@@ -188,9 +210,9 @@ Unfortunately ANACONDA has an error with opencv :(  so we'll need to install ope
 ## OPTION 1
 
 Install Scikit video:
-'''bash
+``` bash
 pip install -i https://pypi.anaconda.org/pypi/simple scikit-video
-'''
+```
 
 In models/research/object_detection, I have created an algorithm named object_detection_video_skvideo.py, run it with:
 ``` bash
@@ -229,6 +251,7 @@ This is how the total loss evolved:
 </p>
 
 [VIDEO YOUTUBE!](https://www.youtube.com/watch?v=xzKb2DJ3PJ0)
+
 
 
 
