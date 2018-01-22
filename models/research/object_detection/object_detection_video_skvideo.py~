@@ -66,17 +66,17 @@ with detection_graph.as_default():
         detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
         num_detections = detection_graph.get_tensor_by_name('num_detections:0')
 	while(cap.isOpened()):
-	    ret,image_np=cap.read()
+	    ret,frame=cap.read()
 	    i+=1
 	    if ret and i>=4:##only read 1 of 4 frames
 		i=0 
-		image_np=cv2.resize(image_np,None,fx=0.17,fy=0.17,interpolation =cv2.INTER_CUBIC)##resize
-	    	image_np=cv2.cvtColor(image_np,cv2.COLOR_BGR2RGB)
-	    	#image=Image.fromarray(frame)		
+		frame=cv2.resize(frame,None,fx=0.17,fy=0.17,interpolation =cv2.INTER_CUBIC)##resize
+	    	frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+	    	image=Image.fromarray(frame)		
 		#image.thumbnail((250,250),Image.ANTIALIAS)
             	# the array based representation of the image will be used later in order to prepare the
             	# result image with boxes and labels on it.
-            	#image_np = load_image_into_numpy_array(image)
+            	image_np = load_image_into_numpy_array(image)
             	# Expand dimensions since the model expects images to have shape: [1, None, None, 3]
             	image_np_expanded = np.expand_dims(image_np, axis=0)
             	# Actual detection.

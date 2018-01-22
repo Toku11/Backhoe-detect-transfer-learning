@@ -6,7 +6,6 @@ import tarfile
 import tensorflow as tf
 import zipfile
 import sys
-import skvideo.io
 from utils import label_map_util
 from utils import visualization_utils as vis_util
 from collections import defaultdict
@@ -17,11 +16,13 @@ import numpy as np
 import cv2
 i=0
 j=0
-cap = skvideo.io.VideoCapture(sys.argv[1])## read file from path
+cap = cv2.VideoCapture(sys.argv[1]) ## read image from path
 if (cap.isOpened()== False): 
   print("Error opening video stream or file")
+
 success,image=cap.read()
 success=True
+
 if tf.__version__ < '1.4.0':
     raise ImportError('Please upgrade your tensorflow installation to v1.4.* or later!')
 
@@ -70,8 +71,8 @@ with detection_graph.as_default():
 	    i+=1
 	    if ret and i>=4:##only read 1 of 4 frames
 		i=0 
-		image_np=cv2.resize(image_np,None,fx=0.17,fy=0.17,interpolation =cv2.INTER_CUBIC)##resize
-	    	image_np=cv2.cvtColor(image_np,cv2.COLOR_BGR2RGB)
+		image_np=cv2.resize(image_np,None,fx=0.18,fy=0.18,interpolation =cv2.INTER_CUBIC)##resize
+	    	#frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
 	    	#image=Image.fromarray(frame)		
 		#image.thumbnail((250,250),Image.ANTIALIAS)
             	# the array based representation of the image will be used later in order to prepare the
