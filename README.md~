@@ -1,5 +1,7 @@
 # Tokunaga Herrera Oscar Skycatch Coding Challenge Model
+# ARCHITECTURE CHALLENGE
 
+https://docs.google.com/document/d/1EX6Y-oFsJZVAUyBrVJTUe2ruxGRhT5jXJJhy9QDr3sA/edit?usp=sharing
 # DOCUMENTATION
 
 [VIDEO YOUTUBE!](https://www.youtube.com/watch?v=xzKb2DJ3PJ0)
