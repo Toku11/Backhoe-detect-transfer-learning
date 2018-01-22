@@ -7,8 +7,6 @@ Usage:
   # Create test data:
   python generate_tfrecord.py --csv_input=data1/test_labels.csv  --output_path=test.record
 """
-
-## code to create .record dataset from csv and images
 from __future__ import division
 from __future__ import print_function
 from __future__ import absolute_import
@@ -28,7 +26,7 @@ flags.DEFINE_string('output_path', '', 'Path to output TFRecord')
 FLAGS = flags.FLAGS
 
 
-# class to clasify, number 4 to avoid erros because the dataset have anothers classes.
+# TO-DO replace this with label map
 def class_text_to_int(row_label):
     if row_label == 'body':
         return 1
@@ -39,13 +37,13 @@ def class_text_to_int(row_label):
     else:
         return 4
 
-## help function
+
 def split(df, group):
     data = namedtuple('data', ['filename', 'object'])
     gb = df.groupby(group)
     return [data(filename, gb.get_group(x)) for filename, x in zip(gb.groups.keys(), gb.groups)]
 
-##create records
+
 def create_tf_example(group, path):
     with tf.gfile.GFile(os.path.join(path, '{}'.format(group.filename)), 'rb') as fid:
         encoded_jpg = fid.read()

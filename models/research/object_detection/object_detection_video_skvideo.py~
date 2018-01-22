@@ -17,7 +17,7 @@ import numpy as np
 import cv2
 i=0
 j=0
-cap = skvideo.io.VideoCapture(sys.argv[1])## read file from path
+cap = skvideo.io.VideoCapture(sys.argv[1])
 if (cap.isOpened()== False): 
   print("Error opening video stream or file")
 success,image=cap.read()

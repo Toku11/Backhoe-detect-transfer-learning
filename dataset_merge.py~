@@ -4,7 +4,7 @@ Created on Thu Jan 18 15:56:09 2018
 
 @author: fatoks
 """
-## this code read folder FINAL/videoXX/ to merge the files in one folder 
+
 import os
 import glob
 import shutil
