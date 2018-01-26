@@ -214,7 +214,7 @@ Install Scikit video:
 pip install -i https://pypi.anaconda.org/pypi/simple scikit-video
 ```
 
-In models/research/object_detection, I have created an algorithm named object_detection_video_skvideo.py, run it with:
+In models/research/object_detection, there is an algorithm named object_detection_video_skvideo.py, run it with:
 ``` bash
 # From Skycatch/models/research/object_detection
 python object_detection_video_skvideo.py {PATH_TO_VIDEO}
@@ -227,7 +227,7 @@ if you already have opencv just link it with CONDA**  and use the follow command
 ``` bash
 ln -s /usr/local/lib/python2.7/site-packages/cv2.so ~/miniconda2/envs/Skycatch1/lib/python2.7/cv2.so
 ``` 
-In models/research/object_detection, I have created an algorithm named object_detection_video_opencv.py, run it with:
+In models/research/object_detection, there is an algorithm named object_detection_video_opencv.py, run it with:
 
 ``` bash
 # From Skycatch/models/research/object_detection
