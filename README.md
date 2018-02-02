@@ -1,10 +1,4 @@
-# Tokunaga Herrera Oscar Skycatch Coding Challenge Model
-
-# ARCHITECTURE CHALLENGE
-
-https://docs.google.com/document/d/1EX6Y-oFsJZVAUyBrVJTUe2ruxGRhT5jXJJhy9QDr3sA/edit?usp=sharing
-
-# CODING CHALLENGE
+# TENSORFLOW OBJECT DETECTION API SSD
 
 ## DOCUMENTATION
 
@@ -31,7 +25,7 @@ So let's get serious!
 
 ## Are you ready?
 
-Clone the Skycatch project
+Clone the project
 ``` bash
 https://github.com/Toku11/Skycatch.git
 
